@@ -21,15 +21,20 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.firstName = action.payload.firstName;
     },
+    clearUser: (state) => {
+      state.email = undefined;
+      state.firstName = undefined;
+      state.lastName = undefined;
+    }
   },
   extraReducers:(builder) =>{
     builder.addCase(getLogin.fulfilled,(state,action) =>{
-      state.email = action?.payload?.email;
-      state.firstName = action?.payload?.firstName;
-      state.lastName = action?.payload?.lastName
+      state.email = action?.payload?.email || state.email ;
+      state.firstName = action?.payload?.firstName || state.firstName ;
+      state.lastName = action?.payload?.lastName || state.lastName ;
     })
   }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser ,clearUser } = userSlice.actions;
 export default userSlice.reducer;
