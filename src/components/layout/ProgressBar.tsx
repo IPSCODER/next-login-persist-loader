@@ -42,7 +42,7 @@ const ProgressBar: React.FC = () => {
         setIsVisible(false);
       }, 100);
     }
-  }, [pathname]);
+  }, [pathname,progress]);
 
   if (!isVisible) return null;
 
